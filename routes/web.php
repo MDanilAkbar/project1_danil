@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\MahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,4 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Route::get('/jurusan', [JurusanController::class, 'index']);
 
-Route::get('/mahasiswa', [JurusanController::class, 'index']);
+Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
