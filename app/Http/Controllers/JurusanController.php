@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Jurusan;
 
 class JurusanController extends Controller
 {
@@ -13,7 +14,9 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        return view('jurusan.index');
+        $nomor = 1;
+        $jur = Jurusan::all(); //eloquent ORM
+        return view('jurusan.index',compact('nomor','jur'));
     }
 
     /**
@@ -34,7 +37,12 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jur = new Jurusan;
+        $jur->kode = $request->kode;
+        $jur->jurusan = $request->jurusan;
+        $jur->save();
+
+        return redirect('/jurusan/');
     }
 
     /**

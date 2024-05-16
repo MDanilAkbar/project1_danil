@@ -38,16 +38,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>IK</td>
-                  <td>Informatika Komputer</td>
-                  <td>
-                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                  </td>
-                </tr>
-                </tfoot>
+                  @forelse ($jur as $item)
+                  <tr>
+                    <td>{{$nomor++}}</td>
+                    <td>{{$item->kode}}</td>
+                    <td>{{$item->jurusan}}</td>
+                    <td>
+                      <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-alt"></i></a>
+                      <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                    </td>
+                  </tr>
+                  @empty
+                      
+                  @endforelse
+                
+                </tbody>
               </table>
         </div>
         <!-- /.card-body -->
