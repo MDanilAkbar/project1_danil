@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title','Data Mahasiswa')
-@section('heading','Data Mahasiswa')
+@section('heading','Data Jurusan')
 
 @section('bc')
     <div class="col-sm-6">
@@ -15,7 +15,7 @@
     <div class="card">
         <div class="card-header">
         <h3 class="card-title">
-            <a href="#" class="btn btn-primary"><i class="fa fa-folder-plus"></i> Tambah Data</a>
+            <a href="/mahasiswa/form/" class="btn btn-primary"><i class="fa fa-folder-plus"></i> Tambah Data</a>
         </h3>
 
         <div class="card-tools">
@@ -33,23 +33,54 @@
                 <tr>
                   <th>No</th>
                   <th>NIM</th>
-                  <th>Nama</th>
-                  <th>Kelas</th>
+                  <th>Nama Lengkap</th>
+                  <th>Jurusan</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>00123</td>
-                  <td>Abdul</td>
-                  <td>is61</td>
-                  <td>
-                    <a href="#" class="btn btn-info btn-sm"><i class="fa fa-pencil-alt"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-                  </td>
-                </tr>
-                </tfoot>
+                  @forelse ($mhs as $item)
+                  <tr>
+                    <td>{{$nomor++}}</td>
+                    <td>{{$item->nim}}</td>
+                    <td>{{$item->nama}}</td>
+                    <td>{{$item->jurusans_id}}</td>
+                    <td>
+                      <a href="/mahasiswa/edit/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-pencil-alt"></i></a>
+                      <!-- Button trigger modal -->
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus{{$item->id}}">
+                        <i class="fa fa-trash"></i>
+                      </button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="hapus{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan</h1>
+                              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              Yakin Data Jurusan {{$item->jurusan}} di hapus?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                              <form action="/mahasiswa/{{$item->id}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Hapus</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  @empty
+                      
+                  @endforelse
+                
+                </tbody>
               </table>
         </div>
         <!-- /.card-body -->
