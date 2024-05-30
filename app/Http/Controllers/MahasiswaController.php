@@ -39,7 +39,17 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mhs = new Mahasiswa;
+        $mhs->nim = $request->nim;
+        $mhs->nama = $request->nama;
+        $mhs->tempatLahir = $request->tempat;
+        $mhs->tanggalLahir = $request->tanggal;
+        $mhs->jenisKelamin = $request->jk;
+        $mhs->agama = $request->agama;
+        $mhs->jurusans_id = $request->jurusan;
+        $mhs->save();
+
+        return redirect('/mahasiswa/');
     }
 
     /**
@@ -50,7 +60,7 @@ class MahasiswaController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -61,7 +71,8 @@ class MahasiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mhs = Mahasiswa::find($id);
+        return view('mahasiswa.edit',compact('mhs'));
     }
 
     /**
@@ -84,6 +95,9 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mhs = Mahasiswa::find($id);
+        $mhs->delete();
+
+        return redirect('/mahasiswa/');
     }
 }

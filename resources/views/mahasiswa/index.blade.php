@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title','Data Mahasiswa')
-@section('heading','Data Jurusan')
+@section('heading','Data Mahasiswa')
 
 @section('bc')
     <div class="col-sm-6">
@@ -44,7 +44,7 @@
                     <td>{{$nomor++}}</td>
                     <td>{{$item->nim}}</td>
                     <td>{{$item->nama}}</td>
-                    <td>{{$item->jurusans_id}}</td>
+                    <td>{{$item->jurusans->jurusan}}</td>
                     <td>
                       <a href="/mahasiswa/edit/{{$item->id}}" class="btn btn-info btn-sm"><i class="fa fa-pencil-alt"></i></a>
                       <!-- Button trigger modal -->
@@ -61,7 +61,7 @@
                               <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              Yakin Data Jurusan {{$item->jurusan}} di hapus?
+                              Yakin Data Mahasiswa {{$item->nama}} di hapus?
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
